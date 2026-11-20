@@ -1,9 +1,9 @@
-name: Build debug APK
+name: Build YTMusik APK
 on:
   workflow_dispatch:
   push:
     branches:
-      - canary
+      - main
   pull_request:
     branches:
       - '**'
@@ -33,5 +33,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: app
+          name: ytmusik-apk
           path: app/build/outputs/apk/core/debug/*.apk

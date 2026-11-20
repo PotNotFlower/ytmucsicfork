@@ -49,11 +49,11 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "dev.skye.intertune"
+        applicationId = "com.potnotflower.ytmusik"
         minSdk = 24
         targetSdk = 36
         versionCode = 103
-        versionName = "0.12.11"
+        versionName = "0.12.11-ytmusik.1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         // Obfuscated, not encrypted, and the difference matters. Anything the app can read, so
