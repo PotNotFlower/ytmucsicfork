@@ -28,7 +28,11 @@ jobs:
         run: yes | /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager --licenses
 
       - name: Build debug APK and run jvm tests
-        run: ./gradlew assembleCoreDebug lintCoreDebug testCoreDebugUnitTest --stacktrace -DskipFormatKtlint
+        run: ./gradlew assembleCoreDebug lintCoreDebug testCoreDebugUnitTest --stacktrace -DskipFormatKtlint --console=plain 2>&1 | tee build.log
+
+      - name: Show failure tail
+        if: failure()
+        run: echo "::error title=build-tail::$(tail -c 4000 build.log | tr '\n' '|')"
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
