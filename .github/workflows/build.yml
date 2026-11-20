@@ -32,7 +32,9 @@ jobs:
 
       - name: Show failure tail
         if: failure()
-        run: echo "::error title=build-tail::$(tail -c 4000 build.log | tr '\n' '|')"
+        run: |
+          { awk '/\* What went wrong:/{f=1} f{print} /^\* Try:/{exit}' build.log; grep -m 20 -E "^e: |error: |FAILED" build.log; } | tr '\n' '|' | head -c 8000 > msg.txt
+          echo "::error title=build-tail::$(cat msg.txt)"
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
