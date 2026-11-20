@@ -28,7 +28,7 @@ jobs:
         run: yes | /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager --licenses
 
       - name: Build debug APK and run jvm tests
-        run: ./gradlew assembleCoreDebug lintCoreDebug testCoreDebugUnitTest --stacktrace -DskipFormatKtlint --console=plain 2>&1 | tee build.log
+        run: set -o pipefail; ./gradlew assembleCoreDebug lintCoreDebug testCoreDebugUnitTest --stacktrace -DskipFormatKtlint --console=plain 2>&1 | tee build.log
 
       - name: Show failure tail
         if: failure()
