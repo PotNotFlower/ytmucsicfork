@@ -4,9 +4,14 @@ on:
   push:
     branches:
       - main
+    tags:
+      - 'v*'
   pull_request:
     branches:
       - '**'
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -44,3 +49,9 @@ jobs:
         with:
           name: ytmusik-apk
           path: app/build/outputs/apk/core/debug/*.apk
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: app/build/outputs/apk/core/debug/*.apk
