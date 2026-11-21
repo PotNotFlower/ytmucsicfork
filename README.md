@@ -27,14 +27,16 @@
 2. Скачайте артефакт `ytmusik-apk` (это zip с APK внутри).
 3. Разрешите установку из неизвестных источников и установите APK.
 
-APK — отладочная сборка, подписанная ключом CI. Пакет `com.potnotflower.ytmusik.debug`,
-поэтому YTMusik ставится рядом с InterTune и официальным YouTube Music, не заменяя их.
+В архиве лежит `YTMusik-0.12.11-ytmusik.1-core-debug-103.apk`, в лончере приложение
+называется **YTMusik Debug**. APK — отладочная сборка, подписанная ключом CI. Пакет
+`com.potnotflower.ytmusik.debug`, поэтому YTMusik ставится рядом с InterTune и официальным
+YouTube Music, не заменяя их.
 
-Готовых релизов в этом репозитории нет: APK собирается только в Actions.
+Готовых релизов в этом репозитории нет: APK собирается только в Actions, сборка занимает около 20 минут.
 
 ## Сборка
 
-Нужны JDK 21 и Android SDK 36:
+Нужны JDK 21 и Android SDK 36, NDK `29.0.13113456` и CMake `3.31.6`:
 
 ```bash
 git clone --recurse-submodules https://github.com/PotNotFlower/ytmucsicfork
@@ -44,13 +46,16 @@ cd ytmucsicfork
 
 Результат: `app/build/outputs/apk/core/debug/*.apk`.
 
+CI собирает только APK: юнит-тесты апстрима проверяют брендинг и тексты InterTune и в форке не проходят.
+
 ## Отличия от апстрима
 
 | | InterTune | YTMusik |
 |---|---|---|
-| Имя приложения | InterTune | YTMusik |
+| Имя приложения | InterTune | YTMusik (Debug) |
 | applicationId | `dev.skye.intertune` | `com.potnotflower.ytmusik` |
 | Версия | `0.12.11` | `0.12.11-ytmusik.1` |
+| Файл APK | `InterTune-*.apk` | `YTMusik-*.apk` |
 
 ## Ограничения
 
